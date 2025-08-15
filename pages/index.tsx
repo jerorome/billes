@@ -116,7 +116,7 @@ export default function BilliardBooking() {
 
   const formatTime = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
-  const winCounts = scores.reduce((acc, { name, result }) => {
+  const winCounts: Record<string, { win: number; lose: number }> = scores.reduce((acc, { name, result }) => {
     if (!name || !result) return acc;
     if (!acc[name]) acc[name] = { win: 0, lose: 0 };
     if (result === "Gagné") acc[name].win++;
@@ -128,5 +128,5 @@ export default function BilliardBooking() {
     .sort(([, a], [, b]) => b.win - a.win)
     .map(([name, { win, lose }], index) => ({ name, win, lose, rank: index + 1 }));
 
-  // ...le reste du code JSX reste inchangé (inchangé car inchangé par la persistance)
+  // ... JSX ici
 }
